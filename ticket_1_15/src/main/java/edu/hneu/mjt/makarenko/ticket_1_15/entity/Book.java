@@ -3,6 +3,10 @@ package edu.hneu.mjt.makarenko.ticket_1_15.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.hneu.mjt.makarenko.ticket_1_15.model.NewBook;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,14 +30,19 @@ public class Book {
     @JsonIgnore
     private Author author;
 
+    @NotBlank
     private String title;
 
+    @NotEmpty
     private String genre;
 
+    @Positive
     private int pages;
 
+    @PastOrPresent
     private Date published;
 
+    @NotEmpty
     private String language;
 
     public Book(NewBook newBook, Author author) {
