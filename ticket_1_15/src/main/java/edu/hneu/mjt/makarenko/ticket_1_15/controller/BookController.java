@@ -5,6 +5,7 @@ import edu.hneu.mjt.makarenko.ticket_1_15.entity.Book;
 import edu.hneu.mjt.makarenko.ticket_1_15.model.NewAuthor;
 import edu.hneu.mjt.makarenko.ticket_1_15.model.NewBook;
 import edu.hneu.mjt.makarenko.ticket_1_15.service.BookService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,12 @@ public class BookController {
     }
 
     @PostMapping("/authors/{authorId}/books")
-    public Book addBook(@PathVariable UUID authorId, @RequestBody NewBook newBook) {
+    public Book addBook(@PathVariable UUID authorId, @RequestBody @Valid NewBook newBook) {
         return bookService.createBook(authorId, newBook);
     }
 
     @PutMapping("/authors/{authorId}/books/{id}")
-    public Book updateBook(@PathVariable UUID authorId, @PathVariable UUID id, @RequestBody NewBook newBook) {
+    public Book updateBook(@PathVariable UUID authorId, @PathVariable UUID id, @RequestBody @Valid NewBook newBook) {
         return bookService.updateBook(authorId, id, newBook);
     }
 

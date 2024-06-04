@@ -3,6 +3,7 @@ package edu.hneu.mjt.makarenko.ticket_1_15.controller;
 import edu.hneu.mjt.makarenko.ticket_1_15.entity.Author;
 import edu.hneu.mjt.makarenko.ticket_1_15.model.NewAuthor;
 import edu.hneu.mjt.makarenko.ticket_1_15.service.AuthorService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +26,12 @@ public class AuthorController {
     }
 
     @PostMapping("/authors")
-    public Author addAuthor(@RequestBody NewAuthor author) {
+    public Author addAuthor(@RequestBody @Valid NewAuthor author) {
         return authorService.createAuthor(author);
     }
 
     @PutMapping("/authors/{id}")
-    public Author updateAuthor(@PathVariable UUID id, @RequestBody NewAuthor author) {
+    public Author updateAuthor(@PathVariable UUID id, @RequestBody @Valid NewAuthor author) {
         return authorService.updateAuthor(id, author);
     }
 
